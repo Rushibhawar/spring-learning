@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xmlns:context="http://www.springframework.org/schema/context"
+ 	xmlns:p="http://www.springframework.org/schema/p"
+ 	xmlns:c="http://www.springframework.org/schema/c"
+ 	xmlns:tx="http://www.springframework.org/schema/tx"
+ 	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	https://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context.xsd
+ 	http://www.springframework.org/schema/tx
+ 	http://www.springframework.org/schema/tx/spring-tx.xsd">
+ 	
+ 	
+ 	<!-- to enable @Transactional annotation -->
+ 	<tx:annotation-driven />
+ 	
+ 	<!-- DataSource Bean-->
+ 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="dataSource">
+ 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+ 		<property name="url" value="jdbc:mysql://localhost/springorm"></property>
+ 		<property name="username" value="root"></property>
+ 		<property name="password" value="1213"></property>
+ 	</bean>
+ 	
+ 	
+ 	<!-- LocalSessionFactoryBean bean-->
+ 	<bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="sessionFactory">
+ 		<!-- dataSource property-->
+ 		<property name="dataSource" ref="dataSource"></property>
+ 			
+ 		<!-- Hibernate Properties like hibernate dilect, hbm2ddl.update,..... -->
+ 		<property name="hibernateProperties">
+ 			<props>
+ 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop> <!-- CTRL + SHIFT + T => MySQL8Dialect-->
+ 				<prop key="hibernate.show_sql">true</prop>
+ 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+ 			</props>
+ 		</property>
+ 		
+ 		<!-- Annotated Class-->
+ 		<property name="annotatedClasses"><!-- if we are using annotation if we are using xml mapping then set name mappingResource-->
+ 			<list>
+ 				<value>com.spring.orm.entities.Student</value>
+ 			</list>
+ 		</property>
+ 			
+ 	</bean>
+ 	
+ 	<!-- hibernatetemplate Bean -->
+ 	<bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="hibernateTemplate">
+ 		<property name="sessionFactory" ref="sessionFactory"></property>
+ 	</bean>
+ 	
+ 	<bean class="com.spring.orm.dao.StudentDao" name="studentDao">
+ 		<property name="hibernateTemplate" ref = "hibernateTemplate"></property>
+ 	</bean>
+ 	
+ 	
+ 	<!-- Exception in thread "main" org.springframework.dao.InvalidDataAccessApiUsageException: 
+ 	Write operations are not allowed in read-only mode (FlushMode.MANUAL): Turn your Session into FlushMode.COMMIT/AUTO 
+ 	or remove 'readOnly' marker from transaction definition.-->
+ 	<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager">
+ 		<property name="sessionFactory" ref="sessionFactory"></property>
+ 	</bean>
+
+</beans>
