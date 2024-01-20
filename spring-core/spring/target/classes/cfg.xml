@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xmlns:context="http://www.springframework.org/schema/context"
+ 	xmlns:p="http://www.springframework.org/schema/p"
+ 	xmlns:c="http://www.springframework.org/schema/c"
+ 	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	https://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context.xsd">
+ 	
+ 	<!-- here above we add dependencies from spring pdf and some more
+ 	then we specify bean tag which has class means the fully qualified name of the java class then name which we can set anything
+ 	then using property tag means we are using setter injection so 
+ 	property tag has name i.e name of the variables set in the java class they must be same
+ 	then it has value tag so that we can set the value of the variables without making changes in the java code
+ 	
+ 	Below is Injecting primitive types
+ 	-->
+ 	
+ 	<bean class="com.springcore.spring.Student" name="student1">
+ 		<property name="studentId" value="2234">
+ 			<!-- <value>22344</value>
+ 			this is setter injection we her use value as an element to inject and above we use value as attribute
+ 			-->
+ 		</property>
+ 		<property name="studentName" value="Rushikesh"/>
+ 			<!--<value>Rushi</value>-->
+ 		
+ 		<property name="studentAddress" value="Pune"/>
+ 			<!--<value>Pune</value>-->
+ 		
+ 	</bean>
+ 	
+ 	<!-- Second object and also using p schema
+ 	Here we p schema to inject
+ 	-->
+ 	<bean class="com.springcore.spring.Student" name="student2" p:studentId="550" p:studentName="Alex" p:studentAddress="Delhi" />
+ 	
+ 	
+ 	<!-- to Inject Collection types
+ 	List:-->
+ 	<bean>
+ 		<property name="List1">
+ 			<list>
+ 				<value>10</value>
+ 				<value>20</value>
+ 				<value>30</value>
+ 			 	<value>80</value>
+ 				<value>80</value>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 	
+ 	<!-- Set:-->
+ 	<bean>
+ 		<property name="set1">
+ 			<set>
+ 				<value>70</value>
+ 				<value>30</value>
+ 				<value>80</value>
+ 				<value>90</value>
+ 				<value>100</value>
+ 			</set>
+ 		</property>
+ 	</bean>
+ 	
+ 	<!-- Map:-->
+ 	<bean>
+ 		<property name="map1">
+ 			<map>
+ 				<entry key="name" value="rushike"/>
+ 				<entry key="city" value="pune"/>
+ 			</map>
+ 		</property>
+ 	</bean>
+ 	
+ 	<!-- Properties-->
+ 	<bean>
+ 		<property name="property1">
+ 			<props>
+ 				<prop key="name">Rushikesh</prop>
+ 				<prop key="class">BscCS</prop>
+ 			</props>
+ 		</property>
+ 	</bean>
+ 	
+ 		
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xmlns:context="http://www.springframework.org/schema/context"
+ 	xmlns:p="http://www.springframework.org/schema/p"
+ 	xmlns:c="http://www.springframework.org/schema/c"
+ 	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	https://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context.xsd">
+ 	
+ 	<bean class="com.springcore.autowire.Address" name="address" p:street = "Balewadi High Street" p:city = "Pune"/>
+ 	<!-- here to autowire the name of bean and the name of object we have created in Emp should be same-->
+	<bean class="com.springcore.autowire.Emp" name="emp" autowire="byName"/><!-- using byName and byType the setter method is called to inject-->
+	<!-- we can also do autowiring using type here i.e is Address autowire="byType"-->
+	
+	<bean class="com.springcore.autowire.Emp" name="emp1" autowire="constructor"/>
+	<!-- we can also do autowire using constructor autowire="constructor"-->
+	
+</beans>

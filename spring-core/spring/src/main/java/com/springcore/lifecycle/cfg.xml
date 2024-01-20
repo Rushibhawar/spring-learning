@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xmlns:context="http://www.springframework.org/schema/context"
+ 	xmlns:p="http://www.springframework.org/schema/p"
+ 	xmlns:c="http://www.springframework.org/schema/c"
+ 	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	https://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/context
+ 	http://www.springframework.org/schema/context/spring-context.xsd">
+ 	
+ 	 <!-- to enable all the annnotation in the project-->
+ 	<context:annotation-config/>
+ 	
+ 	<!-- this is implementing the lifecycle methods using xml-->
+ 	<bean class="com.springcore.lifecycle.Product" name="product1" init-method="init" destroy-method="destroy">
+ 		<property name="price" value="12"/>
+ 	</bean>
+ 	
+ 	<!-- using interfaces-->	
+ 	<bean class="com.springcore.lifecycle.Product1" name="product2">
+ 		<property name="price" value="15"/>
+ 	</bean>
+ 	
+ 	<!-- using Annotations-->
+ 	<bean class="com.springcore.lifecycle.Product3" name="product3">
+ 		<property name="subject" value="Science"/>
+ 	</bean>
+</beans>
