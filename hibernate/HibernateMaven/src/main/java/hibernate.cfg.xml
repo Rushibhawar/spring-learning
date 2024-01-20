@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!-- here above we copy paste it from the https://hibernate.org/dtd/ 
+	saved in Windows(C)->User->rushi->hibernate
+-->
+
+<!-- then we create this tags  which property and name -->	
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+		<property name="connection.url">jdbc:postgresql://localhost/myhibernate</property>
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">1213</property>
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property><!-- download from chrome hibernate postgres dialect-->
+		<property name="hbm2ddl.auto">update</property><!-- to create automatic tables in databases update means it will create new table if there is not a table of that name or else it will update the existing table-->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		
+		<!--For enabling second level cache -->
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
+		
+		
+		
+		<mapping class="com.hibernate.annotationhiber.Student" />
+		<mapping class="com.hibernate.img.Address"/>
+		<mapping class="com.hibernate.embedable.Student1"/>
+		<mapping class="com.hibernate.mapping.Question"/>
+		<mapping class="com.hibernate.mapping.Answer"/>
+		<mapping class="com.hibernate.mapping.onetomanytoone.Question"/>
+		<mapping class="com.hibernate.mapping.onetomanytoone.Answer1"/>
+		<mapping class="com.hibernate.mapping.manytomany.Emp"/>
+		<mapping class="com.hibernate.mapping.manytomany.Project"/>
+		<mapping class="com.hibernate.objectstates.StudentData"/>
+		<mapping class="com.hibernate.objectstates.StudentCertificate"/>
+		
+		<!-- for xmlmapping formapping without anotations-->
+		<mapping resource="com/hibernate/xmlmapping/Person.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>	
